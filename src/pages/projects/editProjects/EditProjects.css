@@ -1,0 +1,7 @@
+.editProject {
+  flex: 0.8;
+  background-color: #fff;
+  margin: 2rem;
+  overflow: scroll;
+  padding: 20px;
+}

@@ -1,0 +1,44 @@
+.addProject {
+  flex: 0.8;
+  background-color: #fff;
+  margin: 2rem;
+  overflow: scroll;
+  padding: 20px;
+}
+
+.userUpdateLeft {
+  flex: 0.8;
+}
+
+.userUpdateInput {
+  border: none;
+  width: 75%;
+  height: 50px;
+  border-bottom: 1px solid gray;
+  outline: none;
+}
+
+.userUpdateUpload {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.userUpdateButton {
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  background-color: teal;
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.userUpdateRight {
+  flex: 0.2;
+  padding: 10px;
+}
+
+.addMember {
+  text-align: left;
+}

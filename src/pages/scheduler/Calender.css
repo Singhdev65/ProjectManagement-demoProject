@@ -1,0 +1,40 @@
+.calender {
+  flex: 0.8;
+  background-color: #fff;
+  margin: 2rem;
+  padding: 20px;
+  overflow: scroll;
+  height: calc(100vh - 200px);
+}
+
+.calender__week {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.calender__dayWrapper {
+  height: 120px;
+  margin: 0;
+  flex: 1;
+}
+
+.calender__day {
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  background-color: whitesmoke !important;
+  box-shadow: 1px 2px 3px #bfbfbf !important;
+}
+
+.calender__selected {
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  background-color: teal !important;
+  color: #fff !important;
+}

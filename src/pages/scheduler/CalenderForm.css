@@ -1,0 +1,62 @@
+.calenderForm {
+  flex: 0.8;
+  background-color: #fff;
+  margin: 2rem;
+  padding: 20px;
+}
+
+.calenderForm__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5vh;
+  margin: 0;
+  padding: 10px;
+}
+
+.calenderForm__navLeft > h2 {
+  font-size: 3.5rem;
+  font-weight: 300;
+}
+
+.calenderForm__navRight {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.calenderForm__navButton {
+  width: 100px;
+  border: none;
+  padding: 5px;
+  background-color: teal;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  margin-left: 0.5rem;
+}
+
+.calenderForm__main {
+  display: flex;
+  margin-top: 1.5rem;
+}
+
+.calenderForm__mainLeft {
+  flex: 0.6;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  padding: 20px;
+}
+
+.calenderForm__mainRight {
+  flex: 0.4;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  padding: 20px;
+}
+
+.calenderForm__mainForm {
+  display: flex;
+  align-items: center;
+}

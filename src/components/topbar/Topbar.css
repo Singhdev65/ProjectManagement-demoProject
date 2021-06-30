@@ -1,0 +1,94 @@
+.topbar {
+  height: 90px;
+  background-color: #2f4050;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.topbar__wrapper {
+  height: 100%;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar__middle {
+  display: flex;
+  align-items: center;
+  margin-right: 3.5em;
+}
+
+.topbar__middle > input {
+  outline: none;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  width: 25rem;
+}
+
+.topbar__middle > input :hover {
+  border: 1px solid #007bff;
+}
+
+.topbar__right {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.topbar__rightIconWrapper {
+  position: relative;
+  cursor: pointer;
+  margin-right: 0.8rem;
+}
+
+.topbar__rightIconBadge {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 1px;
+}
+
+.topbar__rightImage {
+  width: 30px !important;
+  height: 30px !important;
+  margin: 0 1.2rem;
+}
+
+.topbar__btn {
+  width: 80px;
+  border: none;
+  padding: 5px;
+  background-color: teal;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+}
+
+.hamburger {
+  color: #fff;
+}
+
+.topbar__icons {
+  color: #fff;
+}
+
+@media screen and (max-width: 360px) {
+  .topbar__middle > input {
+    display: none;
+  }
+}

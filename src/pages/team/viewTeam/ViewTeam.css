@@ -1,0 +1,76 @@
+.viewTeam {
+  flex: 0.8;
+  background-color: whitesmoke;
+  margin: 2rem;
+  overflow: scroll;
+  padding: 20px;
+  display: flex;
+  height: calc(100vh - 90px);
+}
+
+.viewTeam__Left {
+  flex: 0.3;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  margin: 1rem;
+  background-color: #fff;
+}
+
+.viewTeam__LeftImg {
+  width: 170px;
+  height: 170px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.viewTeam__LeftTop {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.viewTeam__LeftInfo > h3 {
+  font-size: 1.8rem;
+  font-weight: bolder;
+  padding: 5px;
+  margin-bottom: 0px;
+}
+
+.viewTeam__LeftInfo > h5 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 5px;
+  margin-top: 0px;
+  color: gray;
+  text-align: center;
+}
+
+.viewTeam__ShowInfo {
+  display: flex;
+  align-items: center;
+  margin: 0rem 2rem;
+  margin-top: 2rem;
+}
+
+.viewTeam__ShowIcon {
+  width: 35px !important;
+  height: 35px !important;
+  color: gray;
+  padding: 7px;
+}
+
+.viewTeam__ShowInfoTitle {
+  font-size: 1.2rem;
+  font-weight: 800;
+  padding: 10px;
+}
+
+.viewTeamRight {
+  flex: 0.7;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  margin: 1rem;
+  background-color: #fff;
+}

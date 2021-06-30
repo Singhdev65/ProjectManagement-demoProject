@@ -1,0 +1,36 @@
+.newMember {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  height: 80px;
+}
+
+.newMember__info {
+  margin: auto 0;
+}
+
+.newMember__Avatar {
+  margin: 1rem;
+}
+
+.newMember__info > h5 {
+  font-size: 1rem;
+  font-weight: 800 !important;
+  color: #000;
+  text-align: center;
+  margin-bottom: 0.1rem;
+}
+
+.newMember__info > h6 {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #070707;
+  padding-bottom: 7px;
+  text-align: center;
+  margin-top: 0rem;
+}
+
+.newMember__icon {
+  padding: 1rem !important;
+}
