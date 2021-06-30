@@ -15,11 +15,10 @@ const AddTeam = () => {
   const [experience, setExperience] = useState("");
   const history = useHistory();
   const [image, setImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState("")
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     db.collection("Team").add({
       name:name, 
       role: role,
@@ -43,7 +42,6 @@ const AddTeam = () => {
             uploadTask.on("state_changes", snapshot => {}, err => {console.log(err)}, () => {
               storage.ref("images").child(image.name).getDownloadURL().then(url => {
                 setImageUrl(url);
-              alert("We are good to go now")
               })
             })
           }
@@ -51,21 +49,21 @@ const AddTeam = () => {
    return (
         <div className="addTeam">
             <h3>Add Member</h3>
-            <form className="userUpdateForm" onSubmit={handleSubmit}>
-              <div className="userUpdateLeft">
-                <div className="userUpdateItem">
+            <form className="addTeamForm" onSubmit={handleSubmit}>
+              <div className="addTeamForm__Left">
+                <div className="addTeamForm__LeftItem">
                   <label> Name</label>
                   <input
                     type="text"
                     value={name}
                     placeholder="prince Kumar"
-                    className="userUpdateInput"
+                    className="addTeamForm__LeftInput"
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
-                <div className="userUpdateItem">
+                <div className="addTeamForm__LeftItem">
                   <label>Role</label>
-                  <select className="userUpdateInput"
+                  <select className="addTeamForm__LeftInput"
                    value={role}
                   style={{backgroundColor:"transparent"}}
                   onChange={(e) => setRole(e.target.value)}
@@ -78,51 +76,51 @@ const AddTeam = () => {
                   </select>
                 </div>
                 
-                <div className="userUpdateItem">
+                <div className="addTeamForm__LeftItem">
                   <label>Email</label>
                   <input
                     type="email"
                     value={email}
                     placeholder="princekasayap65gmail.com"
-                    className="userUpdateInput"
+                    className="addTeamForm__LeftInput"
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
-                <div className="userUpdateItem">
+                <div className="addTeamForm__LeftItem">
                   <label>Phone</label>
                   <input
                     type="text"
                     value={phone}
                     placeholder="9661794532"
-                    className="userUpdateInput"
+                    className="addTeamForm__LeftInput"
                     onChange={(e) => setPhone(e.target.value)}
                   />
                 </div>
-                <div className="userUpdateItem">
+                <div className="addTeamForm__LeftItem">
                   <label>Address</label>
                   <input
                     type="text"
                     value={address}
                     placeholder="Noida | India"
-                    className="userUpdateInput"
+                    className="addTeamForm__LeftInput"
                     onChange={(e) => setAddress(e.target.value)}
                   />
                 </div>
-                <div className="userUpdateItem">
+                <div className="addTeamForm__LeftItem">
                   <label>Experience(in Years)</label>
                   <input
                     type="number"
                     placeholder="10"
                     value={experience}
-                    className="userUpdateInput"
+                    className="addTeamForm__LeftInput"
                     onChange={(e) => setExperience(e.target.value)}
                   />
                 </div>
               </div>
 
-              <div className="userUpdateRight" >
-                <div className="userUpdateUpload" style={{display: "flex", flexDirection:"column-reverse" }}>
-                <Button onClick={() => {handleImage()}}>Upload Image</Button>
+              <div className="addTeamForm__Right" >
+                <div className="addTeamForm__RightUpload" style={{display: "flex", flexDirection:"column-reverse" }}>
+                <Button className="addTeamForm__RightUploadButton" onClick={handleImage}>Upload Image</Button>
                 Upload Picture
                   <label htmlFor="file">
                     <Publish className="userUpdateIcon"
@@ -130,7 +128,10 @@ const AddTeam = () => {
                   </label>
                   <input type="file" id="file" required  onChange={handleChange} style={{ display: "none" }} />
                 </div>
-                {imageUrl !== "" && <button type="submit" className="userUpdateButton" onClick={handleSubmit}>Add Member</button>}
+                <button type="submit" className="addTeamForm__RightButton" 
+                // onClick={imageUrl === "" ? alert("Please upload the image first") : handleSubmit}
+                disabled={imageUrl !== "" && alert("Please proceed with submission")}
+                >Add Member</button>
               </div>
             </form>
         </div>

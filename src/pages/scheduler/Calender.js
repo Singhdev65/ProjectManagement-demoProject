@@ -3,8 +3,10 @@ import React,{ useEffect, useState } from 'react'
 import './Calender.css';
 import { Card } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import db from '../../firebase';
 
 const Calender = () => {
+    // const [attendance, setAttendance] = useState([]);
     const [calender, setCalender] = useState([]);
     const [value, setValue] = useState(moment());
     const startDay = value.clone().startOf("month").startOf("week");
@@ -12,17 +14,29 @@ const Calender = () => {
     
     useEffect(() => {
         const day = startDay.clone().subtract(1, "day");
-        const a = [];
+        const a = [];   // using temp variable to not re-render many times
         while(day.isBefore(endDay, "day")){
         a.push(
             Array(7).fill(0).map(() => (day.add(1, "day").clone()))
         )
     }
     setCalender(a)
-    }, [value])
+    }, [value]);
+
+    // // To get the data of attendance of every employee
+
+    // useEffect(() => {
+    //     db.collection("Attendance").onSnapshot((snapshot) => (
+    //         setAttendance(snapshot.docs.map((doc) => ({
+    //             id: doc.id,
+    //             data: doc.data(),
+    //         })))
+    //     ))
+    // }, [])
 
     return (
         <div className="calender">
+        <h2>Calender</h2>
             {calender.map(week => (
                 <div className="calender__week">
                     {week.map(day => (

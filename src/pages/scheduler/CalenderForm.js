@@ -3,25 +3,26 @@ import './CalenderForm.css';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { Checkbox } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
-import db from '../../firebase'
+import db from '../../firebase';
+import {useStateValue} from '../../StateProvider';
 
 const CalenderForm = () => {
   const [loginTime, setLoginTime] = useState("");
   const [logOutTime, setLogOutTime] = useState("");
   const [details, setDetails] = useState("");
   const history = useHistory();
+  const [{ user}] = useStateValue();
 
 const handleSubmit = (e) => {
   e.preventDefault();
   db.collection("Attendance").add({
+    name: user.displayName,
     loginTime: loginTime,
     logOutTime: logOutTime,
     details: details,
   })
   history.push('/attendance');
 }
-
-  console.log(details)
     return (
         <form className="calenderForm" onSubmit={handleSubmit}>
             <nav className="calenderForm__nav">

@@ -62,6 +62,11 @@ export const SidebarData = [
       icon:<EventIcon />
     },
     {
+      title:'AdminSheet',
+      path:'/attendance/adminSheet',
+      icon:<EventIcon />
+    },
+    {
       icon: <AssignmentLateIcon />,
       title: 'Clients',
       path: '/clients',

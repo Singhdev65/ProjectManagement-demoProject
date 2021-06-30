@@ -13,18 +13,24 @@ import ViewTeam from './pages/team/viewTeam/ViewTeam';
 import EditProjects from './pages/projects/editProjects/EditProjects';
 import Calender from './pages/scheduler/Calender';
 import CalenderForm from './pages/scheduler/CalenderForm';
+import AdminSheet from './pages/scheduler/AdminSheet';
+import Login from './pages/login/Login';
+import { useStateValue } from './StateProvider';
 
 function App() {
   const [sidebar, setSidebar] = useState(true);
+  const [{ user}] = useStateValue();
 
   return (
     <div className="app">
+    {(!user) ? (<Login />) : (
+      <Router>
           <Topbar hamburger={() => setSidebar(!sidebar)}/>
           <div className="app__body">
-          <Router>
                 {sidebar && <Sidebar />}
                 <Switch>
                 <Route path="/" exact component={Dashboard} />
+                <Route path="/dashboard" exact component={Dashboard} />
                 <Route path="/user" exact component={User} />
                 <Route path="/projectList" exact component={Projects} />
                 <Route path="/project/add" exact component={AddProjects} />
@@ -34,9 +40,11 @@ function App() {
                 <Route path="/team/members/view/:teamId" exact component ={ViewTeam} />
                 <Route path="/attendance" exact component={Calender} />
                 <Route path="/attendance/repeat" exact component={CalenderForm} />
+                <Route path="/attendance/adminSheet" exact component={AdminSheet} />
                 </Switch>
-            </Router>
           </div>
+          </Router>
+          )}
     </div>
   );
 }

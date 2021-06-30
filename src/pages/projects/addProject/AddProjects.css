@@ -6,24 +6,43 @@
   padding: 20px;
 }
 
-.userUpdateLeft {
+.addProjectForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0;
+}
+
+.addProjectForm__Left {
   flex: 0.8;
 }
 
-.userUpdateInput {
+.addProjectForm__LeftItem {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.addProjectForm__LeftItemInput {
   border: none;
-  width: 75%;
+  width: 90%;
   height: 50px;
   border-bottom: 1px solid gray;
-  outline: none;
 }
 
-.userUpdateUpload {
+.addProjectForm__RightItemInput {
+  border: none;
+  width: 250px;
+  height: 50px;
+  border-bottom: 1px solid gray;
+}
+
+.addProjectForm__RightUpload {
   display: flex;
-  justify-content: space-evenly;
+  align-items: center;
 }
 
-.userUpdateButton {
+.addProjectForm__RightButton {
   border-radius: 5px;
   border: none;
   padding: 5px;
@@ -32,11 +51,14 @@
   color: white;
   font-weight: 600;
   font-size: 1.2rem;
+  margin-top: 1rem;
 }
 
-.userUpdateRight {
+.addProjectForm__Right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   flex: 0.2;
-  padding: 10px;
 }
 
 .addMember {

@@ -5,9 +5,22 @@ import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneO
 import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
 import { Avatar, IconButton } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import {useStateValue} from '../../StateProvider'
+import {auth} from '../../firebase';
+import {dispatch, actionTypes} from '../../reducer';
 
 const Topbar = ({hamburger}) => {
     const [search, setSearch] = useState(false);
+    const [{user}, dispatch]  = useStateValue();
+
+    const handleClick = () => {
+        auth.signOut().then(() =>
+            dispatch({
+                type: actionTypes.REMOVE_USER,
+            })
+        )
+            .catch((error) => alert(error.message));
+    }
 
     return (
         <div className="topbar">
@@ -30,9 +43,9 @@ const Topbar = ({hamburger}) => {
                         <EmailOutlinedIcon className="topbar__icons"/>
                         <span className="topbar__rightIconBadge">7</span>
                     </div>
-                    <Avatar className="topbar__rightImage" />
+                    <Avatar className="topbar__rightImage" src={user.photoURL}/>
                     <div className="topbar__rightIconWrapper">
-                        <button variant="contained" color="primary" className="topbar__btn" >SignOut</button>
+                        <button variant="contained" color="primary" className="topbar__btn" onClick={handleClick}>SignOut</button>
                     </div>
                 </div>
             </div>

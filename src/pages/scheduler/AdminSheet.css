@@ -1,0 +1,21 @@
+.adminSheet {
+  flex: 0.8;
+  background-color: #fff;
+  margin: 2rem;
+  overflow: scroll;
+  padding: 20px;
+}
+
+.adminSheet__filter {
+  display: flex;
+  margin: 1rem;
+  justify-content: flex-end;
+}
+
+.admin__input {
+  outline: none;
+  border: none;
+  padding: 5px;
+  border-radius: 7px;
+  font-size: 1.2rem;
+}

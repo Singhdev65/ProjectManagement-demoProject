@@ -77,21 +77,21 @@ const [image, setImage] = useState(null);
     return (
         <div className="addProject">
         <h3>Add Projects</h3>
-            <form className="userUpdateForm" onSubmit={handleSubmit}>
-              <div className="userUpdateLeft">
-                <div className="userUpdateItem">
+            <form className="addProjectForm" onSubmit={handleSubmit}>
+              <div className="addProjectForm__Left">
+                <div className="addProjectForm__LeftItem">
                   <label>Project Name</label>
                   <input
                     type="text"
                     value={projectName}
                     placeholder="Flipkart"
-                    className="userUpdateInput"
+                    className="addProjectForm__LeftItemInput"
                     onChange={(e) => setProjectName(e.target.value)}
                   />
                 </div>
-                <div className="userUpdateItem">
+                <div className="addProjectForm__LeftItem">
                   <label>Project Type</label>
-                  <select className="userUpdateInput"
+                  <select className="addProjectForm__LeftItemInput"
                   value={projectType}
                    style={{backgroundColor:"transparent"}}
                   onChange={(e) => setProjectType(e.target.value)}
@@ -102,19 +102,19 @@ const [image, setImage] = useState(null);
                             <option value="Internal">Internal</option>
                   </select>
                 </div>
-                <div className="userUpdateItem">
+                <div className="addProjectForm__LeftItem">
                   <label>Project Description</label>
                   <input
                     type="text"
                     value={projectDescription}
                     placeholder="Design a Banner for Diwali Sale."
-                    className="userUpdateInput"
+                    className="addProjectForm__LeftItemInput"
                     onChange={(e) => setProjectDescription(e.target.value)}
                   />
                 </div>
-                <div className="userUpdateItem">
+                <div className="addProjectForm__LeftItem">
                   <label>Project Status</label>
-                  <select className="userUpdateInput" 
+                  <select className="addProjectForm__LeftItemInput" 
                   value={projectStatus}
                   style={{backgroundColor:"transparent"}}
                   onChange={(e) => setProjectStatus(e.target.value)}
@@ -125,27 +125,27 @@ const [image, setImage] = useState(null);
                       <option value="On Hold">On Hold</option>
                   </select>
                 </div>
-                <div className="userUpdateItem">
+                <div className="addProjectForm__LeftItem">
                   <label>Start Date</label>
                   <input
                     type="date"
                     value={startDate}
-                    className="userUpdateInput"
+                    className="addProjectForm__LeftItemInput"
                     onChange={(e) => setStartDate(e.target.value)}
                   />
                 </div>
-                <div className="userUpdateItem">
+                <div className="addProjectForm__LeftItem">
                   <label>Release Date</label>
                   <input
                     type="date"
-                    className="userUpdateInput"
+                    className="addProjectForm__LeftItemInput"
                     value={releaseDate}
                     onChange={(e) => setReleaseDate(e.target.value)}
                   />
                 </div>
-                <div className="userUpdateItem">
+                <div className="addProjectForm__LeftItem">
                   <label>Default Assignee</label>
-                  <select className="userUpdateInput" style={{backgroundColor:"transparent"}}
+                  <select className="addProjectForm__LeftItemInput" style={{backgroundColor:"transparent"}}
                   value={assignee}
                   onChange={(e) => setAssignee(e.target.value)}
                   >
@@ -154,8 +154,8 @@ const [image, setImage] = useState(null);
                   </select>
                 </div>
               </div>
-              <div className="userUpdateRight" >
-                <div className="userUpdateUpload" style={{display: "flex", flexDirection:"column-reverse" }}>
+              <div className="addProjectForm__Right" >
+                <div className="addProjectForm__RightUpload" style={{display: "flex", flexDirection:"column-reverse" }}>
                 <Button onClick={() => handleImage()}>Upload</Button>
                 Upload your Figma Design
                   <label htmlFor="file">
@@ -167,7 +167,7 @@ const [image, setImage] = useState(null);
                 <div className="addMember">
                 <button style={{marginRight:"0.5rem"}}>+</button>
                 Assign Project Manager
-                <select className="userUpdateInput" 
+                <select className="addProjectForm__RightItemInput" 
                   value={projectManager}
                   style={{backgroundColor:"transparent"}}
                   onChange={(e) => setProjectManager(e.target.value)}
@@ -181,7 +181,7 @@ const [image, setImage] = useState(null);
                 <div className="addMember">
                 <button style={{marginRight:"0.5rem"}}>+</button>
                 Assign Team Lead
-                <select className="userUpdateInput" 
+                <select className="addProjectForm__RightItemInput" 
                   value={teamLead}
                   style={{backgroundColor:"transparent"}}
                   onChange={(e) => setTeamLead(e.target.value)}
@@ -195,7 +195,7 @@ const [image, setImage] = useState(null);
                 <div className="addMember">
                 <button style={{marginRight:"0.5rem"}}>+</button>
                 Assign Developer
-                <select className="userUpdateInput" 
+                <select className="addProjectForm__RightItemInput" 
                   value={developer}
                   style={{backgroundColor:"transparent"}}
                   onChange={(e) => setDeveloper(e.target.value)}
@@ -209,7 +209,7 @@ const [image, setImage] = useState(null);
                 <div className="addMember">
                 <button style={{marginRight:"0.5rem"}}>+</button>
                 Assign Tester
-                <select className="userUpdateInput" 
+                <select className="addProjectForm__RightItemInput" 
                   value={tester}
                   style={{backgroundColor:"transparent"}}
                   onChange={(e) => setTester(e.target.value)}
@@ -220,7 +220,7 @@ const [image, setImage] = useState(null);
                 ))}
                   </select>
                 </div>
-                <button type="submit" onClick={handleSubmit} className="userUpdateButton">Create Project</button>
+                <button type="submit" onClick={handleSubmit} className="addProjectForm__RightButton">Create Project</button>
               </div>
             </form>
         </div>

@@ -7,24 +7,25 @@ import {
     Publish,
   } from "@material-ui/icons";
   import "./User.css";
+  import {useStateValue} from '../../StateProvider';
   
   export default function User() {
+    const [{user}] = useStateValue();
     return (
       <div className="user">
         <div className="userTitleContainer">
           <h1 className="userTitle">Edit User</h1>
-            <button className="userAddButton">Create</button>
         </div>
         <div className="userContainer">
           <div className="userShow">
             <div className="userShowTop">
               <img
-                src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                src={user.photoURL}
                 alt=""
                 className="userShowImg"
               />
               <div className="userShowTopTitle">
-                <span className="userShowUsername">Prince Kumar</span>
+                <span className="userShowUsername">{user.displayName}</span>
                 <span className="userShowUserTitle">Software Engineer</span>
               </div>
             </div>
@@ -32,7 +33,7 @@ import {
               <span className="userShowTitle">Account Details</span>
               <div className="userShowInfo">
                 <PermIdentity className="userShowIcon" />
-                <span className="userShowInfoTitle">prince99</span>
+                <span className="userShowInfoTitle">{user.uid}</span>
               </div>
               <div className="userShowInfo">
                 <CalendarToday className="userShowIcon" />
@@ -45,7 +46,7 @@ import {
               </div>
               <div className="userShowInfo">
                 <MailOutline className="userShowIcon" />
-                <span className="userShowInfoTitle">prince99@gmail.com</span>
+                <span className="userShowInfoTitle">{user.email}</span>
               </div>
               <div className="userShowInfo">
                 <LocationSearching className="userShowIcon" />
@@ -118,7 +119,7 @@ import {
                 <div className="userUpdateUpload">
                   <img
                     className="userUpdateImg"
-                    src="https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                    src={user.photoURL}
                     alt=""
                   />
                   <label htmlFor="file">
