@@ -1,0 +1,86 @@
+.register {
+  width: 50vw;
+  height: 65vh;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5rem;
+  border: 2px solid gray;
+}
+
+.register__header {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #2f4050;
+  color: #fff;
+}
+
+.register__header > h2 {
+  font-size: 2.5rem;
+  color: greenyellow;
+}
+
+.register__header > h3 {
+  font-size: 2.5rem;
+  margin-top: 0;
+  color: red;
+  padding: 1rem;
+  margin-top: 15px;
+}
+
+.register__form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0;
+  margin: 1.5rem 1rem;
+}
+
+.register__formLeft {
+  flex: 0.7;
+}
+
+.register__formItem {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.register__formInput {
+  border: none;
+  width: 80%;
+  height: 40px;
+  border-bottom: 1px solid gray;
+  outline: none;
+}
+
+.register__formRight {
+  flex: 0.3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.register__formRightUpload {
+  display: flex;
+  flex-direction: column;
+}
+
+.register__formRightUpload > label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register__formRightUploadButton {
+  border-radius: 5px;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  background-color: teal;
+  color: white;
+  font-weight: 500;
+  margin-top: 1rem;
+}
