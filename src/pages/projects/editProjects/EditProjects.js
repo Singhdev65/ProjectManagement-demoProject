@@ -9,17 +9,19 @@ import { useParams } from "react-router-dom";
 const EditProjects = () => {
   const [projects, setProjects] = useState([]);
   const [roles, setRole] = useState([]);
-  const [projectName, setProjectName] = useState("");
-  const [projectType, setProjectType] = useState("");
-  const [projectDescription, setProjectDescription] = useState("");
-  const [projectStatus, setProjectStatus] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [releaseDate, setReleaseDate] = useState("");
-  const [assignee, setAssignee] = useState([]);
-  const [projectManager, setProjectManager] = useState("");
-  const [teamLead, setTeamLead] = useState("");
-  const [tester, setTester] = useState([]);
-  const [developer, setDeveloper] = useState([]);
+  const [project, setProject] = useState({
+    projectName: "",
+    projectType: "",
+    projectDescription: "",
+    projectStatus: "",
+    startDate: "",
+    releaseDate: "",
+    projectManager: "",
+    teamLead: "",
+    assignee: [],
+    tester: [],
+    developer: [],
+  });
   const history = useHistory();
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
@@ -30,17 +32,17 @@ const EditProjects = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     db.collection("Projects").doc(projectId).update({
-      ProjectName: projectName,
-      ProjectType: projectType,
-      ProjectDescription: projectDescription,
-      ProjectStatus: projectStatus,
-      StartDate: startDate,
-      ReleaseDate: releaseDate,
-      Assignee: assignee,
-      projectManager: projectManager,
-      TeamLead: teamLead,
-      Tester: tester,
-      Developer: developer,
+      ProjectName: projects.projectName,
+      ProjectType: projects.projectType,
+      ProjectDescription: projects.projectDescription,
+      ProjectStatus: projects.projectStatus,
+      StartDate: projects.startDate,
+      ReleaseDate: projects.releaseDate,
+      projectManager: projects.projectManager,
+      TeamLead: projects.teamLead,
+      Assignee: projects.assignee,
+      Tester: projects.tester,
+      Developer: projects.developer,
       imageUrl: imageUrl,
     });
     history.push("/projectList");
@@ -97,6 +99,13 @@ const EditProjects = () => {
     );
   }, []);
 
+  const updateField = (e) => {
+    setProject({
+      ...project,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <div className="editProject">
       <h3>Update Project</h3>
@@ -109,18 +118,20 @@ const EditProjects = () => {
                 <label>Project Name</label>
                 <input
                   type="text"
+                  name="projectName"
                   defaultValue={doc.data.ProjectName}
                   className="userUpdateInput"
-                  onChange={(e) => setProjectName(e.target.value)}
+                  onChange={updateField}
                 />
               </div>
               <div className="userUpdateItem">
                 <label>Project Type</label>
                 <select
+                  name="projectType"
                   className="userUpdateInput"
                   defaultValue={doc.data.ProjectType}
                   style={{ backgroundColor: "transparent" }}
-                  onChange={(e) => setProjectType(e.target.value)}
+                  onChange={updateField}
                 >
                   <option value="">Select</option>
                   <option value="Software">Software</option>
@@ -132,18 +143,20 @@ const EditProjects = () => {
                 <label>Project Description</label>
                 <input
                   type="text"
+                  name="projectDescription"
                   defaultValue={doc.data.ProjectDescription}
                   className="userUpdateInput"
-                  onChange={(e) => setProjectDescription(e.target.value)}
+                  onChange={updateField}
                 />
               </div>
               <div className="userUpdateItem">
                 <label>Project Status</label>
                 <select
+                  name="projectStatus"
                   className="userUpdateInput"
                   defaultValue={doc.data.ProjectStatus}
                   style={{ backgroundColor: "transparent" }}
-                  onChange={(e) => setProjectStatus(e.target.value)}
+                  onChange={updateField}
                 >
                   <option value="Select">Select</option>
                   <option value="In Progress">In Progress</option>
@@ -155,27 +168,30 @@ const EditProjects = () => {
                 <label>Start Date</label>
                 <input
                   type="date"
+                  name="startDate"
                   defaultValue={doc.data.StartDate}
                   className="userUpdateInput"
-                  onChange={(e) => setStartDate(e.target.value)}
+                  onChange={updateField}
                 />
               </div>
               <div className="userUpdateItem">
                 <label>Release Date</label>
                 <input
                   type="date"
+                  name="releaseDate"
                   className="userUpdateInput"
                   defaultValue={doc.data.ReleaseDate}
-                  onChange={(e) => setReleaseDate(e.target.value)}
+                  onChange={updateField}
                 />
               </div>
               <div className="userUpdateItem">
                 <label>Default Assignee</label>
                 <select
                   className="userUpdateInput"
+                  name="assignee"
                   style={{ backgroundColor: "transparent" }}
                   defaultValue={doc.data.Assignee}
-                  onChange={(e) => setAssignee(e.target.value)}
+                  onChange={updateField}
                 >
                   <option value="Select">Select</option>
                   <option value="Admin">Admin</option>
@@ -203,10 +219,11 @@ const EditProjects = () => {
                 <button style={{ marginRight: "0.5rem" }}>+</button>
                 Assign Project Manager
                 <select
+                  name="projectManager"
                   className="userUpdateInput"
                   defaultValue={doc.data.projectManager}
                   style={{ backgroundColor: "transparent" }}
-                  onChange={(e) => setProjectManager(e.target.value)}
+                  onChange={updateField}
                 >
                   <option value="Select">Select</option>
                   {roles
@@ -220,10 +237,11 @@ const EditProjects = () => {
                 <button style={{ marginRight: "0.5rem" }}>+</button>
                 Assign Team Lead
                 <select
+                  name="teamLead"
                   className="userUpdateInput"
                   defaultValue={doc.data.TeamLead}
                   style={{ backgroundColor: "transparent" }}
-                  onChange={(e) => setTeamLead(e.target.value)}
+                  onChange={updateField}
                 >
                   <option value="Select">Select</option>
                   {roles
@@ -237,10 +255,11 @@ const EditProjects = () => {
                 <button style={{ marginRight: "0.5rem" }}>+</button>
                 Assign Developer
                 <select
+                  name="developer"
                   className="userUpdateInput"
                   defaultValue={doc.data.Developer}
                   style={{ backgroundColor: "transparent" }}
-                  onChange={(e) => setDeveloper(e.target.value)}
+                  onChange={updateField}
                 >
                   <option value="Select">Select</option>
                   {roles
@@ -255,9 +274,10 @@ const EditProjects = () => {
                 Assign Tester
                 <select
                   className="userUpdateInput"
+                  name="tester"
                   defaultValue={doc.data.Tester}
                   style={{ backgroundColor: "transparent" }}
-                  onChange={(e) => setTester(e.target.value)}
+                  onChange={updateField}
                 >
                   <option value="Select">Select</option>
                   {roles

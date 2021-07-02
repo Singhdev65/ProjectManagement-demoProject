@@ -6,18 +6,20 @@ import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
 const AddProjects = () => {
+  const [projects, setProjects] = useState({
+    projectName: "",
+    projectType: "",
+    projectDescription: "",
+    projectStatus: "",
+    startDate: "",
+    releaseDate: "",
+    projectManager: "",
+    teamLead: "",
+    assignee: [],
+    tester: [],
+    developer: [],
+  });
   const [roles, setRole] = useState([]);
-  const [projectName, setProjectName] = useState("");
-  const [projectType, setProjectType] = useState("");
-  const [projectDescription, setProjectDescription] = useState("");
-  const [projectStatus, setProjectStatus] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [releaseDate, setReleaseDate] = useState("");
-  const [assignee, setAssignee] = useState([]);
-  const [projectManager, setProjectManager] = useState("");
-  const [teamLead, setTeamLead] = useState("");
-  const [tester, setTester] = useState([]);
-  const [developer, setDeveloper] = useState([]);
   const history = useHistory();
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
@@ -27,17 +29,17 @@ const AddProjects = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     db.collection("Projects").add({
-      ProjectName: projectName,
-      ProjectType: projectType,
-      ProjectDescription: projectDescription,
-      ProjectStatus: projectStatus,
-      StartDate: startDate,
-      ReleaseDate: releaseDate,
-      Assignee: assignee,
-      projectManager: projectManager,
-      TeamLead: teamLead,
-      Tester: tester,
-      Developer: developer,
+      ProjectName: projects.projectName,
+      ProjectType: projects.projectType,
+      ProjectDescription: projects.projectDescription,
+      ProjectStatus: projects.projectStatus,
+      StartDate: projects.startDate,
+      ReleaseDate: projects.releaseDate,
+      projectManager: projects.projectManager,
+      TeamLead: projects.teamLead,
+      Assignee: projects.assignee,
+      Tester: projects.tester,
+      Developer: projects.developer,
       imageUrl: imageUrl,
     });
     history.push("/projectList");
@@ -85,6 +87,13 @@ const AddProjects = () => {
     );
   }, []);
 
+  const updateField = (e) => {
+    setProjects({
+      ...projects,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <div className="addProject">
       <h3>Add Projects</h3>
@@ -94,19 +103,21 @@ const AddProjects = () => {
             <label>Project Name</label>
             <input
               type="text"
-              value={projectName}
+              name="projectName"
+              value={projects.projectName}
               placeholder="Flipkart"
               className="addProjectForm__LeftItemInput"
-              onChange={(e) => setProjectName(e.target.value)}
+              onChange={updateField}
             />
           </div>
           <div className="addProjectForm__LeftItem">
             <label>Project Type</label>
             <select
               className="addProjectForm__LeftItemInput"
-              value={projectType}
+              value={projects.projectType}
+              name="projectType"
               style={{ backgroundColor: "transparent" }}
-              onChange={(e) => setProjectType(e.target.value)}
+              onChange={updateField}
             >
               <option value="">Select</option>
               <option value="Software">Software</option>
@@ -118,19 +129,21 @@ const AddProjects = () => {
             <label>Project Description</label>
             <input
               type="text"
-              value={projectDescription}
+              name="projectDescription"
+              value={projects.projectDescription}
               placeholder="Design a Banner for Diwali Sale."
               className="addProjectForm__LeftItemInput"
-              onChange={(e) => setProjectDescription(e.target.value)}
+              onChange={updateField}
             />
           </div>
           <div className="addProjectForm__LeftItem">
             <label>Project Status</label>
             <select
               className="addProjectForm__LeftItemInput"
-              value={projectStatus}
+              value={projects.projectStatus}
+              name="projectStatus"
               style={{ backgroundColor: "transparent" }}
-              onChange={(e) => setProjectStatus(e.target.value)}
+              onChange={updateField}
             >
               <option value="Select">Select</option>
               <option value="In Progress">In Progress</option>
@@ -142,18 +155,20 @@ const AddProjects = () => {
             <label>Start Date</label>
             <input
               type="date"
-              value={startDate}
+              name="startDate"
+              value={projects.startDate}
               className="addProjectForm__LeftItemInput"
-              onChange={(e) => setStartDate(e.target.value)}
+              onChange={updateField}
             />
           </div>
           <div className="addProjectForm__LeftItem">
             <label>Release Date</label>
             <input
               type="date"
+              name="releaseDate"
               className="addProjectForm__LeftItemInput"
-              value={releaseDate}
-              onChange={(e) => setReleaseDate(e.target.value)}
+              value={projects.releaseDate}
+              onChange={updateField}
             />
           </div>
           <div className="addProjectForm__LeftItem">
@@ -161,8 +176,9 @@ const AddProjects = () => {
             <select
               className="addProjectForm__LeftItemInput"
               style={{ backgroundColor: "transparent" }}
-              value={assignee}
-              onChange={(e) => setAssignee(e.target.value)}
+              value={projects.assignee}
+              name="assignee"
+              onChange={updateField}
             >
               <option value="Select">Select</option>
               <option value="Admin">Admin</option>
@@ -191,9 +207,10 @@ const AddProjects = () => {
             Assign Project Manager
             <select
               className="addProjectForm__RightItemInput"
-              value={projectManager}
+              value={projects.projectManager}
+              name="projectManager"
               style={{ backgroundColor: "transparent" }}
-              onChange={(e) => setProjectManager(e.target.value)}
+              onChange={updateField}
             >
               <option value="Select">Select</option>
               {roles
@@ -210,9 +227,10 @@ const AddProjects = () => {
             Assign Team Lead
             <select
               className="addProjectForm__RightItemInput"
-              value={teamLead}
+              value={projects.teamLead}
+              name="teamLead"
               style={{ backgroundColor: "transparent" }}
-              onChange={(e) => setTeamLead(e.target.value)}
+              onChange={updateField}
             >
               <option value="Select">Select</option>
               {roles
@@ -227,9 +245,10 @@ const AddProjects = () => {
             Assign Developer
             <select
               className="addProjectForm__RightItemInput"
-              value={developer}
+              value={projects.developer}
+              name="developer"
               style={{ backgroundColor: "transparent" }}
-              onChange={(e) => setDeveloper(e.target.value)}
+              onChange={updateField}
             >
               <option value="Select">Select</option>
               {roles
@@ -244,9 +263,10 @@ const AddProjects = () => {
             Assign Tester
             <select
               className="addProjectForm__RightItemInput"
-              value={tester}
+              value={projects.tester}
+              name="tester"
               style={{ backgroundColor: "transparent" }}
-              onChange={(e) => setTester(e.target.value)}
+              onChange={updateField}
             >
               <option value="Select">Select</option>
               {roles

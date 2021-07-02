@@ -6,11 +6,13 @@ import { actionTypes } from "../../reducer";
 import { useStateValue } from "../../StateProvider";
 
 const Register = () => {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [user, setUser] = useState({
+    fullName: "",
+    email: "",
+    mobile: "",
+    password: "",
+    role: "",
+  });
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const [{}, dispatch] = useStateValue();
@@ -18,11 +20,11 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await db.collection("Users").add({
-      name: fullName,
-      email: email,
-      mobile: mobile,
-      password: password,
-      role: role,
+      fullName: user.fullName,
+      email: user.email,
+      mobile: user.mobile,
+      password: user.password,
+      role: user.role,
     });
     await auth
       .createUserWithEmailAndPassword(
@@ -38,6 +40,13 @@ const Register = () => {
       .catch((error) => alert(error.message));
   };
 
+  const updateField = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <div className="register">
       <div className="register__header">
@@ -49,41 +58,45 @@ const Register = () => {
             <label>Full Name</label>
             <input
               required
-              value={fullName}
+              value={user.fullName}
               type="text"
+              name="fullName"
               className="register__formInput"
-              onChange={(e) => setFullName(e.target.value)}
+              onChange={updateField}
             />
           </div>
           <div className="register__formItem">
             <label>Email</label>
             <input
               required
-              value={email}
+              value={user.email}
               ref={emailRef}
               type="email"
+              name="email"
               className="register__formInput"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={updateField}
             />
           </div>
           <div className="register__formItem">
             <label>Mobile</label>
             <input
               required
-              value={mobile}
+              value={user.mobile}
               type="number"
+              name="mobile"
               className="register__formInput"
-              onChange={(e) => setMobile(e.target.value)}
+              onChange={updateField}
             />
           </div>
           <div className="register__formItem">
             <label>Password</label>
             <input
               required
-              value={password}
+              value={user.password}
               ref={passwordRef}
               type="password"
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              onChange={updateField}
               className="register__formInput"
             />
           </div>
@@ -92,8 +105,9 @@ const Register = () => {
             <select
               required
               className="register__formInput"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
+              value={user.role}
+              name="role"
+              onChange={updateField}
             >
               <option value="">Select</option>
               <option value="Project Manager">Project Manager</option>

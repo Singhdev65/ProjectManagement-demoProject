@@ -7,12 +7,14 @@ import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
 
 const AddTeam = () => {
-  const [name, setName] = useState("");
-  const [role, setRole] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
-  const [experience, setExperience] = useState("");
+  const [team, setTeam] = useState({
+    name: "",
+    role: "",
+    email: "",
+    address: "",
+    phone: "",
+    experience: "",
+  });
   const history = useHistory();
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
@@ -20,12 +22,12 @@ const AddTeam = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     db.collection("Team").add({
-      name: name,
-      role: role,
-      email: email,
-      address: address,
-      phone: phone,
-      experience: experience,
+      name: team.name,
+      role: team.role,
+      email: team.email,
+      address: team.address,
+      phone: team.phone,
+      experience: team.experience,
       imageUrl: imageUrl,
     });
     history.push("/team/members");
@@ -57,6 +59,13 @@ const AddTeam = () => {
     );
   };
 
+  const updateField = (e) => {
+    setTeam({
+      ...team,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <div className="addTeam">
       <h3>Add Member</h3>
@@ -66,19 +75,21 @@ const AddTeam = () => {
             <label> Name</label>
             <input
               type="text"
-              value={name}
+              value={team.name}
+              name="name"
               placeholder="prince Kumar"
               className="addTeamForm__LeftInput"
-              onChange={(e) => setName(e.target.value)}
+              onChange={updateField}
             />
           </div>
           <div className="addTeamForm__LeftItem">
             <label>Role</label>
             <select
               className="addTeamForm__LeftInput"
-              value={role}
+              value={team.role}
+              name="role"
               style={{ backgroundColor: "transparent" }}
-              onChange={(e) => setRole(e.target.value)}
+              onChange={updateField}
             >
               <option value="Select">Select</option>
               <option value="Project Manager">Project Manager</option>
@@ -92,30 +103,33 @@ const AddTeam = () => {
             <label>Email</label>
             <input
               type="email"
-              value={email}
+              name="email"
+              value={team.email}
               placeholder="princekasayap65gmail.com"
               className="addTeamForm__LeftInput"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={updateField}
             />
           </div>
           <div className="addTeamForm__LeftItem">
             <label>Phone</label>
             <input
               type="text"
-              value={phone}
+              name="phone"
+              value={team.phone}
               placeholder="9661794532"
               className="addTeamForm__LeftInput"
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={updateField}
             />
           </div>
           <div className="addTeamForm__LeftItem">
             <label>Address</label>
             <input
               type="text"
-              value={address}
+              name="address"
+              value={team.address}
               placeholder="Noida | India"
               className="addTeamForm__LeftInput"
-              onChange={(e) => setAddress(e.target.value)}
+              onChange={updateField}
             />
           </div>
           <div className="addTeamForm__LeftItem">
@@ -123,9 +137,10 @@ const AddTeam = () => {
             <input
               type="number"
               placeholder="10"
-              value={experience}
+              name="experience"
+              value={team.experience}
               className="addTeamForm__LeftInput"
-              onChange={(e) => setExperience(e.target.value)}
+              onChange={updateField}
             />
           </div>
         </div>
