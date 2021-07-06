@@ -49,6 +49,7 @@
   border-radius: 15px;
   transition: all 0.5s;
   margin-left: 1rem;
+  text-transform: capitalize;
 }
 
 .team__cardImg {

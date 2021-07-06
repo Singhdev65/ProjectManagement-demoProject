@@ -47,9 +47,9 @@
 .addTeamForm__LeftInput {
   border: none;
   width: 800px;
-  /* flex: 1; */
   height: 50px;
   border-bottom: 1px solid gray;
+  text-transform: capitalize;
 }
 
 .addTeamForm__RightButton {

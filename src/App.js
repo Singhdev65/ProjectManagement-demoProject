@@ -16,6 +16,7 @@ import CalenderForm from "./pages/scheduler/CalenderForm";
 import AdminSheet from "./pages/scheduler/AdminSheet";
 import Login from "./pages/login/Login";
 import { useStateValue } from "./StateProvider";
+import ProjectList from "./pages/projects/ProjectList";
 
 function App() {
   const [sidebar, setSidebar] = useState(true);
@@ -33,7 +34,11 @@ function App() {
             <Switch>
               <Route path="/" exact component={Dashboard} />
               <Route path="/user" exact component={User} />
-              <Route path="/projectList" exact component={Projects} />
+              {user.email === "princekasayap65@gmail.com" ? (
+                <Route path="/projectList" exact component={Projects} />
+              ) : (
+                <Route path="/projectList" exact component={ProjectList} />
+              )}
               <Route path="/project/add" exact component={AddProjects} />
               <Route
                 path="/project/update/:projectId"

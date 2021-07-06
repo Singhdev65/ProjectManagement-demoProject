@@ -8,9 +8,25 @@ import {
 } from "@material-ui/icons";
 import "./User.css";
 import { useStateValue } from "../../StateProvider";
+import { useEffect, useState } from "react";
+import db from "../../firebase";
 
 export default function User() {
   const [{ user }] = useStateValue();
+  const [users, setUsers] = useState([]);
+
+  // getting user information from user
+  useEffect(() => {
+    db.collection("Users").onSnapshot((snapshot) =>
+      setUsers(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      )
+    );
+  }, []);
+
   return (
     <div className="user">
       <div className="userTitleContainer">
@@ -22,7 +38,7 @@ export default function User() {
             <img src={user.photoURL} alt="" className="userShowImg" />
             <div className="userShowTopTitle">
               <span className="userShowUsername">{user.displayName}</span>
-              <span className="userShowUserTitle">Software Engineer</span>
+              <span className="userShowUserTitle">Project Manager</span>
             </div>
           </div>
           <div className="userShowBottom">

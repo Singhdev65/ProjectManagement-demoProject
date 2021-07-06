@@ -13,11 +13,13 @@ const AddProjects = () => {
     projectStatus: "",
     startDate: "",
     releaseDate: "",
-    projectManager: "",
-    teamLead: "",
     assignee: [],
-    tester: [],
-    developer: [],
+    role: {
+      projectManager: "",
+      teamLead: "",
+      tester: "",
+      developer: "",
+    },
   });
   const [roles, setRole] = useState([]);
   const history = useHistory();
@@ -35,9 +37,9 @@ const AddProjects = () => {
       ProjectStatus: projects.projectStatus,
       StartDate: projects.startDate,
       ReleaseDate: projects.releaseDate,
+      Assignee: projects.assignee,
       projectManager: projects.projectManager,
       TeamLead: projects.teamLead,
-      Assignee: projects.assignee,
       Tester: projects.tester,
       Developer: projects.developer,
       imageUrl: imageUrl,
@@ -215,8 +217,8 @@ const AddProjects = () => {
               <option value="Select">Select</option>
               {roles
                 .filter((role) => role.data.role === "Project Manager")
-                .map((role, key) => (
-                  <option key={key} value={role.data.name}>
+                .map((role) => (
+                  <option key={role.id} value={role.data.name}>
                     {role.data.name}
                   </option>
                 ))}
@@ -236,7 +238,9 @@ const AddProjects = () => {
               {roles
                 .filter((role) => role.data.role === "Team Lead")
                 .map((role) => (
-                  <option value={role.data.name}>{role.data.name}</option>
+                  <option key={role.id} value={role.data.name}>
+                    {role.data.name}
+                  </option>
                 ))}
             </select>
           </div>
@@ -254,7 +258,9 @@ const AddProjects = () => {
               {roles
                 .filter((role) => role.data.role === "Developer")
                 .map((role) => (
-                  <option value={role.data.name}>{role.data.name}</option>
+                  <option key={role.id} value={role.data.name}>
+                    {role.data.name}
+                  </option>
                 ))}
             </select>
           </div>
@@ -272,7 +278,9 @@ const AddProjects = () => {
               {roles
                 .filter((role) => role.data.role === "Tester")
                 .map((role) => (
-                  <option value={role.data.name}>{role.data.name}</option>
+                  <option key={role.id} value={role.data.name}>
+                    {role.data.name}
+                  </option>
                 ))}
             </select>
           </div>

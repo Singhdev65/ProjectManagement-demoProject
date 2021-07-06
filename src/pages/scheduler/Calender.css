@@ -7,6 +7,10 @@
   height: calc(100vh - 200px);
 }
 
+.calender > h2 {
+  margin: 0 auto;
+}
+
 .calender__week {
   display: flex;
   align-items: center;

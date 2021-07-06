@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import "./Calender.css";
 import { Card } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import db from "../../firebase";
 
 const Calender = () => {
   const [calender, setCalender] = useState([]);

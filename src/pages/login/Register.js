@@ -4,6 +4,7 @@ import "./Register.css";
 import db, { auth } from "../../firebase";
 import { actionTypes } from "../../reducer";
 import { useStateValue } from "../../StateProvider";
+import { useEffect } from "react";
 
 const Register = () => {
   const [user, setUser] = useState({

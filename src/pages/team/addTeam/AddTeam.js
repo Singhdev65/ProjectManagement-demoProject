@@ -9,7 +9,7 @@ import { Button } from "@material-ui/core";
 const AddTeam = () => {
   const [team, setTeam] = useState({
     name: "",
-    role: "",
+    role: "Admin",
     email: "",
     address: "",
     phone: "",

@@ -7,7 +7,7 @@ import { Avatar, IconButton } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { useStateValue } from "../../StateProvider";
 import { auth } from "../../firebase";
-import { dispatch, actionTypes } from "../../reducer";
+import { actionTypes } from "../../reducer";
 
 const Topbar = ({ hamburger }) => {
   const [search, setSearch] = useState(false);

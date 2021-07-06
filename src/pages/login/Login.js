@@ -7,7 +7,7 @@ import { useStateValue } from "../../StateProvider";
 import Register from "./Register";
 
 const Login = () => {
-  const [{ user }, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue();
   const [isOpen, setIsOpen] = useState(false);
   const [emails, setEmails] = useState([]);
 
