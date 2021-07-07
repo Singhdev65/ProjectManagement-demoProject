@@ -7,9 +7,9 @@ const InfoBox = () => {
   return (
     <>
       {InfoBoxData.map((data, key) => (
-        <Card className="infoBox">
+        <Card className="infoBox" key={key}>
           <CardContent className="infoBox__content">
-            <div className="infoBox__left" key={key}>
+            <div className="infoBox__left">
               <h3>{data.title}</h3>
               <h5>{data.reason}</h5>
               <Typography>{data.value}</Typography>

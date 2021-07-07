@@ -13,13 +13,11 @@ const AddProjects = () => {
     projectStatus: "",
     startDate: "",
     releaseDate: "",
-    assignee: [],
-    role: {
-      projectManager: "",
-      teamLead: "",
-      tester: "",
-      developer: "",
-    },
+    assignee: "",
+    projectManager: "",
+    teamLead: "",
+    tester: "",
+    developer: "",
   });
   const [roles, setRole] = useState([]);
   const history = useHistory();

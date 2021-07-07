@@ -61,6 +61,7 @@ const Projects = () => {
     ) {
       return project;
     }
+    return project;
   });
 
   return (

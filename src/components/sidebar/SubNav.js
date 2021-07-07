@@ -29,8 +29,8 @@ const SubNav = ({ item }) => {
       {subNav &&
         item.subNav.map((item, index) => {
           return (
-            <Link to={item.path}>
-              <div className="subnav__row sidebar__row" key={index}>
+            <Link to={item.path} key={index}>
+              <div className="subnav__row sidebar__row" key={index} id={index}>
                 {item.icon}
                 <div className="sidebar__title">{item.title}</div>
               </div>

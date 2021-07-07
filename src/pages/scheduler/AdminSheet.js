@@ -35,6 +35,7 @@ const AdminSheet = () => {
     } else if (attendance.name.toLowerCase().includes(search.toLowerCase())) {
       return attendance;
     }
+    return attendance;
   });
   return (
     <div className="adminSheet">

@@ -6,8 +6,6 @@ import { Link, useHistory } from "react-router-dom";
 import db from "../../firebase";
 import { useStateValue } from "../../StateProvider";
 
-console.log(new Date().toLocaleTimeString());
-
 const CalenderForm = () => {
   const [loginTime, setLoginTime] = useState("");
   const [logOutTime, setLogOutTime] = useState("");

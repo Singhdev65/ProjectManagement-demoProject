@@ -36,35 +36,33 @@ const ProjectList = () => {
     ) {
       return project;
     }
+    return project;
   });
 
-  const customFilter = filteredRow
-    .filter((doc) => {
-      console.log("u", user.displayName, doc);
-      return (
-        (
-          doc.developer ||
-          doc.tester ||
-          doc.teamLead ||
-          doc.projectManager
-        ).toLowerCase() === user.displayName.toLowerCase()
-      );
-    })
-    .map((user) => {
-      console.log(user);
-      user.role =
-        user.developer || user.tester || user.teamLead || user.projectManager;
-      return user;
-    });
+  const customFilter = filteredRow.filter((doc) => {
+    if (doc.developer.toLowerCase() === user.displayName.toLowerCase()) {
+      doc.role = doc.developer;
+      return true;
+    }
+    if (doc.tester.toLowerCase() === user.displayName.toLowerCase()) {
+      doc.role = doc.tester;
+      return true;
+    }
+    if (doc.teamLead.toLowerCase() === user.displayName.toLowerCase()) {
+      doc.role = doc.teamLead;
+      return true;
+    }
+    if (doc.projectManager.toLowerCase() === user.displayName.toLowerCase()) {
+      doc.role = doc.projectManager;
+      return true;
+    }
+    return true;
+  });
 
   const columns = [
     { field: "id", headerName: "ID" },
     { field: "projectName", headerName: "Name" },
     { field: "projectType", headerName: "Project Type" },
-    // { field: "developer", headerName: "Assignee" },
-    // { field: "tester", headerName: "Assignee" },
-    // { field: "teamLead", headerName: "Assignee" },
-    // { field: "projectManager", headerName: "Assignee" },
     { field: "role", headerName: "Assignee" },
     { field: "projectStatus", headerName: "Project Status", width: "200px" },
     { field: "projectDescription", headerName: "Description", width: "620px" },

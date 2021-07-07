@@ -30,7 +30,7 @@ const ViewTeam = () => {
       {members
         .filter((doc) => doc.id === teamId)
         .map((member) => (
-          <div className="viewTeam__Left">
+          <div className="viewTeam__Left" key={member.id}>
             <div className="viewTeam__LeftTop">
               <img
                 className="viewTeam__LeftImg"

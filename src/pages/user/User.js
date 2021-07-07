@@ -15,14 +15,15 @@ export default function User() {
   const [{ user }] = useStateValue();
   const [users, setUsers] = useState([]);
 
-  // getting user information from user
   useEffect(() => {
-    db.collection("Users").onSnapshot((snapshot) =>
+    db.collection("Team").onSnapshot((snapshot) =>
       setUsers(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          data: doc.data(),
-        }))
+        snapshot.docs
+          .filter((doc) => doc.data().name === user.displayName)
+          .map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
       )
     );
   }, []);
@@ -33,39 +34,41 @@ export default function User() {
         <h1 className="userTitle">Edit User</h1>
       </div>
       <div className="userContainer">
-        <div className="userShow">
-          <div className="userShowTop">
-            <img src={user.photoURL} alt="" className="userShowImg" />
-            <div className="userShowTopTitle">
-              <span className="userShowUsername">{user.displayName}</span>
-              <span className="userShowUserTitle">Project Manager</span>
+        {users.map((team) => (
+          <div className="userShow" key={team.id}>
+            <div className="userShowTop">
+              <img src={user.photoURL} alt="" className="userShowImg" />
+              <div className="userShowTopTitle">
+                <span className="userShowUsername">{user.displayName}</span>
+                <span className="userShowUserTitle">{team.data.role}</span>
+              </div>
+            </div>
+            <div className="userShowBottom">
+              <span className="userShowTitle">Account Details</span>
+              <div className="userShowInfo">
+                <PermIdentity className="userShowIcon" />
+                <span className="userShowInfoTitle">{user.uid}</span>
+              </div>
+              <div className="userShowInfo">
+                <CalendarToday className="userShowIcon" />
+                <span className="userShowInfoTitle">10.12.1997</span>
+              </div>
+              <span className="userShowTitle">Contact Details</span>
+              <div className="userShowInfo">
+                <PhoneAndroid className="userShowIcon" />
+                <span className="userShowInfoTitle">{team.data.phone}</span>
+              </div>
+              <div className="userShowInfo">
+                <MailOutline className="userShowIcon" />
+                <span className="userShowInfoTitle">{user.email}</span>
+              </div>
+              <div className="userShowInfo">
+                <LocationSearching className="userShowIcon" />
+                <span className="userShowInfoTitle">{team.data.address}</span>
+              </div>
             </div>
           </div>
-          <div className="userShowBottom">
-            <span className="userShowTitle">Account Details</span>
-            <div className="userShowInfo">
-              <PermIdentity className="userShowIcon" />
-              <span className="userShowInfoTitle">{user.uid}</span>
-            </div>
-            <div className="userShowInfo">
-              <CalendarToday className="userShowIcon" />
-              <span className="userShowInfoTitle">10.12.1997</span>
-            </div>
-            <span className="userShowTitle">Contact Details</span>
-            <div className="userShowInfo">
-              <PhoneAndroid className="userShowIcon" />
-              <span className="userShowInfoTitle">+91 123 456 67889</span>
-            </div>
-            <div className="userShowInfo">
-              <MailOutline className="userShowIcon" />
-              <span className="userShowInfoTitle">{user.email}</span>
-            </div>
-            <div className="userShowInfo">
-              <LocationSearching className="userShowIcon" />
-              <span className="userShowInfoTitle">Noida | India</span>
-            </div>
-          </div>
-        </div>
+        ))}
         <div className="userUpdate">
           <span className="userUpdateTitle">Edit</span>
           <form className="userUpdateForm">
@@ -135,7 +138,13 @@ export default function User() {
                 </label>
                 <input type="file" id="file" style={{ display: "none" }} />
               </div>
-              <button className="userUpdateButton">Update</button>
+              <button
+                type="submit"
+                className="userUpdateButton"
+                onClick={(e) => e.preventDefault()}
+              >
+                Update
+              </button>
             </div>
           </form>
         </div>

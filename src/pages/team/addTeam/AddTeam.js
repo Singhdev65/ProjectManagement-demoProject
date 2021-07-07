@@ -5,6 +5,7 @@ import db from "../../../firebase";
 import { storage } from "../../../firebase";
 import { useHistory } from "react-router-dom";
 import { Button } from "@material-ui/core";
+import { useEffect } from "react";
 
 const AddTeam = () => {
   const [team, setTeam] = useState({
@@ -18,6 +19,22 @@ const AddTeam = () => {
   const history = useHistory();
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
+  const [emails, setEmails] = useState([]);
+
+  useEffect(() => {
+    db.collection("Team").onSnapshot((snapshot) =>
+      setEmails(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          emails: doc.data().email,
+        }))
+      )
+    );
+  }, []);
+
+  function checkEmails() {
+    return emails.find((email) => console.log(email.emails === team.email));
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +54,7 @@ const AddTeam = () => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
     }
+    checkEmails();
   };
 
   const handleImage = () => {

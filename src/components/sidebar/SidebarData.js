@@ -22,6 +22,7 @@ export const SidebarData = [
   {
     icon: <PeopleIcon />,
     title: "Team",
+    path: "/team/members",
 
     subNav: [
       {
@@ -41,6 +42,7 @@ export const SidebarData = [
   {
     icon: <StorageIcon />,
     title: "Projects",
+    path: "/projectList",
 
     subNav: [
       {
