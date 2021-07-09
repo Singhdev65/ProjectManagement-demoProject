@@ -36,7 +36,7 @@ const ProjectList = () => {
     ) {
       return project;
     }
-    return project;
+    // return project;
   });
 
   const customFilter = filteredRow.filter((doc) => {

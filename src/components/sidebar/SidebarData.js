@@ -10,48 +10,53 @@ import EventIcon from "@material-ui/icons/Event";
 
 export const SidebarData = [
   {
+    key: 1,
     icon: <DashboardIcon />,
     title: "DashBoard",
     path: "/",
   },
   {
+    key: 2,
     icon: <PersonIcon />,
     title: "User Profile",
     path: "/user",
   },
   {
+    key: 3,
     icon: <PeopleIcon />,
     title: "Team",
-    path: "/team/members",
+    // path: "/team/members",
 
     subNav: [
       {
+        key: 4,
         title: "Add Team",
         path: "/team/add",
         icon: <AddIcon />,
-        cName: "sub-nav",
       },
       {
+        key: 5,
         title: "Members",
         path: "/team/members",
         icon: <GroupWorkIcon />,
-        cName: "sub-nav",
       },
     ],
   },
   {
+    key: 6,
     icon: <StorageIcon />,
     title: "Projects",
-    path: "/projectList",
+    // path: "/projectList",
 
     subNav: [
       {
+        key: 7,
         title: "Add Project",
         path: "/project/add",
         icon: <AddIcon />,
-        cName: "sub-nav",
       },
       {
+        key: 8,
         icon: <StorageIcon />,
         title: "Projects List",
         path: "/projectList",
@@ -59,21 +64,25 @@ export const SidebarData = [
     ],
   },
   {
+    key: 9,
     title: "Attendance",
     path: "/attendance",
     icon: <EventIcon />,
   },
   {
+    key: 10,
     title: "AttendanceSheet",
     path: "/attendance/adminSheet",
     icon: <EventIcon />,
   },
   {
+    key: 11,
     icon: <AssignmentLateIcon />,
     title: "Clients",
     path: "/clients",
   },
   {
+    key: 12,
     icon: <PersonIcon />,
     title: "Active Clients",
     path: "/clients/active",

@@ -19,7 +19,7 @@ export default function User() {
     db.collection("Team").onSnapshot((snapshot) =>
       setUsers(
         snapshot.docs
-          .filter((doc) => doc.data().name === user.displayName)
+          .filter((doc) => doc.data().email === user.email)
           .map((doc) => ({
             id: doc.id,
             data: doc.data(),
@@ -31,7 +31,7 @@ export default function User() {
   return (
     <div className="user">
       <div className="userTitleContainer">
-        <h1 className="userTitle">Edit User</h1>
+        <h1 className="userTitle">User Profile</h1>
       </div>
       <div className="userContainer">
         {users.map((team) => (
@@ -39,7 +39,7 @@ export default function User() {
             <div className="userShowTop">
               <img src={user.photoURL} alt="" className="userShowImg" />
               <div className="userShowTopTitle">
-                <span className="userShowUsername">{user.displayName}</span>
+                <span className="userShowUsername">{team.data.name}</span>
                 <span className="userShowUserTitle">{team.data.role}</span>
               </div>
             </div>

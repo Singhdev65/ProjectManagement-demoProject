@@ -7,9 +7,12 @@ import InfoBox from "../../pages/infoBox/InfoBox";
 import NewMember from "../../pages/newMmeber/NewMember";
 import Projects from "../../pages/projects/Projects";
 import db from "../../firebase";
+import { useStateValue } from "../../StateProvider";
+import ProjectList from "../../pages/projects/ProjectList";
 
 const Dashboard = () => {
   const [members, setMembers] = useState([]);
+  const [{ user }] = useStateValue();
 
   useEffect(() => {
     db.collection("Team").onSnapshot((snapshot) =>
@@ -46,7 +49,11 @@ const Dashboard = () => {
           ))}
         </Card>
         <Card className="home__table">
-          <Projects />
+          {user.email === "princekasayap65@gmail.com" ? (
+            <Projects />
+          ) : (
+            <ProjectList />
+          )}
         </Card>
       </div>
     </div>

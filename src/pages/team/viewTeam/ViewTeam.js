@@ -6,6 +6,7 @@ import {
   PermIdentity,
   PhoneAndroid,
 } from "@material-ui/icons";
+import LineBarArea from "./LineBarArea";
 import db from "../../../firebase";
 import "./ViewTeam.css";
 import { useParams } from "react-router-dom";
@@ -39,7 +40,7 @@ const ViewTeam = () => {
               />
               <div className="viewTeam__LeftInfo">
                 <h3>{member.data.name}</h3>
-                <h5>React Developer</h5>
+                <h5>{member.data.role}</h5>
               </div>
             </div>
             <div className="viewTeam__ShowInfo">
@@ -68,7 +69,7 @@ const ViewTeam = () => {
         ))}
 
       <div className="viewTeamRight">
-        <div className="projectProgress">Data to be filled</div>
+        <LineBarArea />
       </div>
     </div>
   );

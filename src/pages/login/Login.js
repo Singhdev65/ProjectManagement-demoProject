@@ -22,6 +22,7 @@ const Login = () => {
   }, []);
 
   const signInWithGoogle = () => {
+    // auth.setPersistence(auth.Auth.Persistence.SESSION).then(() => {
     auth
       .signInWithPopup(provider)
       .then((result) => {
@@ -35,25 +36,21 @@ const Login = () => {
           : alert("Hell! you are not allowed");
       })
       .catch((error) => alert(error.message));
+    // });
   };
-
-  // useEffect(() => {
-  //   localStorage.setItem("UserData", user);
-  //   console.log(user);
-  // }, []);
 
   // To remain login after refresh as well
 
-  // useEffect(() => {
-  //   auth.onAuthStateChanged((currentUser) => {
-  //     if (currentUser) {
-  //       dispatch({
-  //         type: actionTypes.SET_USER,
-  //         user: currentUser,
-  //       });
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    auth.onAuthStateChanged((currentUser) => {
+      if (currentUser) {
+        dispatch({
+          type: actionTypes.SET_USER,
+          user: currentUser,
+        });
+      }
+    });
+  }, []);
 
   return (
     <div className="login">

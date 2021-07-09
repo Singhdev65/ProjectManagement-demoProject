@@ -14,13 +14,14 @@ const EditProjects = () => {
     projectType: "",
     projectDescription: "",
     projectStatus: "",
+    projectProgress: 400,
     startDate: "",
     releaseDate: "",
     projectManager: "",
     teamLead: "",
-    assignee: [],
-    tester: [],
-    developer: [],
+    assignee: "",
+    tester: "",
+    developer: "",
   });
   const history = useHistory();
   const [image, setImage] = useState(null);
@@ -32,17 +33,18 @@ const EditProjects = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     db.collection("Projects").doc(projectId).update({
-      ProjectName: projects.projectName,
-      ProjectType: projects.projectType,
-      ProjectDescription: projects.projectDescription,
-      ProjectStatus: projects.projectStatus,
-      StartDate: projects.startDate,
-      ReleaseDate: projects.releaseDate,
-      projectManager: projects.projectManager,
-      TeamLead: projects.teamLead,
-      Assignee: projects.assignee,
-      Tester: projects.tester,
-      Developer: projects.developer,
+      ProjectName: project.projectName,
+      ProjectType: project.projectType,
+      ProjectDescription: project.projectDescription,
+      ProjectStatus: project.projectStatus,
+      StartDate: project.startDate,
+      ReleaseDate: project.releaseDate,
+      projectManager: project.projectManager,
+      TeamLead: project.teamLead,
+      Assignee: project.assignee,
+      Tester: project.tester,
+      Developer: project.developer,
+      ProjectProgress: project.projectProgress,
       imageUrl: imageUrl,
     });
     history.push("/projectList");
@@ -170,6 +172,16 @@ const EditProjects = () => {
                   type="date"
                   name="startDate"
                   defaultValue={doc.data.StartDate}
+                  className="userUpdateInput"
+                  onChange={updateField}
+                />
+              </div>
+              <div className="userUpdateItem">
+                <label>Project Progress</label>
+                <input
+                  type="number"
+                  name="projectProgress"
+                  defaultValue={doc.data.projectProgress}
                   className="userUpdateInput"
                   onChange={updateField}
                 />

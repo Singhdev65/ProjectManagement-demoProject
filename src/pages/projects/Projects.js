@@ -4,10 +4,12 @@ import { DataGrid } from "@material-ui/data-grid";
 import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import db from "../../firebase";
 import { Link } from "react-router-dom";
+import { useStateValue } from "../../StateProvider";
 
 const Projects = () => {
   const [search, setSearch] = useState("");
   const [projects, setProjects] = useState([]);
+  const [{ user }] = useStateValue();
 
   useEffect(() => {
     db.collection("Projects").onSnapshot((snapshot) =>
@@ -41,12 +43,16 @@ const Projects = () => {
             <Link to={`/project/update/${params.id}`}>
               <button className="projectListEdit">Edit</button>
             </Link>
-            <button
-              className="projectListEdit projectListDelete"
-              onClick={() => db.collection("Projects").doc(params.id).delete()}
-            >
-              Delete
-            </button>
+            {user.email === "princekasayap65@gmail.com" && (
+              <button
+                className="projectListEdit projectListDelete"
+                onClick={() =>
+                  db.collection("Projects").doc(params.id).delete()
+                }
+              >
+                Delete
+              </button>
+            )}
           </div>
         );
       },
@@ -61,7 +67,7 @@ const Projects = () => {
     ) {
       return project;
     }
-    return project;
+    // return project;
   });
 
   return (
